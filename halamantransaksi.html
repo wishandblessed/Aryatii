@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaksi Perpustakaan</title>
+  <style>
+  body {
+      background-image: url('background2.webp');
+      background-size: cover; /* Menutupi seluruh layar */
+      background-repeat: no-repeat; /* Tidak mengulang gambar */
+      background-position: center; /* Gambar dipusatkan */
+    }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+  }
+  
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-container, .table-container {
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  input:focus, select:focus {
+    border-color: palevioletred;
+    outline: none;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: palevioletred;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: palevioletred;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  th {
+    background-color: palevioletred;
+    color: white;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Transaksi Perpustakaan</h1>
+
+    <!-- Form Transaksi -->
+    <div class="form-container">
+      <form id="transaksiForm">
+        <div class="form-group">
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" name="nama" placeholder="Masukkan nama" required>
+        </div>
+        <div class="form-group">
+          <label for="transaksi">Jenis Transaksi</label>
+          <select id="transaksi" name="transaksi" required>
+            <option value="Peminjaman">Peminjaman</option>
+            <option value="Pengembalian">Pengembalian</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="jumlah">Jumlah</label>
+          <input type="number" id="jumlah" name="jumlah" placeholder="Masukkan jumlah" required>
+        </div>
+        <div class="form-group">
+          <label for="kategori">Kategori</label>
+          <select id="kategori" name="kategori" required>
+            <option value="Buku">Buku</option>
+            <option value="Majalah">Majalah</option>
+            <option value="Jurnal">Jurnal</option>
+          </select>
+        </div>
+        <button type="submit" class="btn">Tambah</button>
+      </form>
+    </div>
+
+    <!-- Daftar Transaksi -->
+    <div class="table-container">
+      <h2>Daftar Transaksi</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nama </th>
+            <th>Transaksi</th>
+            <th>Jumlah</th>
+            <th>Kategori</th>
+          </tr>
+        </thead>
+        <tbody id="transaksiTableBody">
+          <!-- Data transaksi akan ditambahkan di sini -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>// Handle form submission
+    document.getElementById("transaksiForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+    
+      // Get form values
+      const nama = document.getElementById("nama").value;
+      const transaksi = document.getElementById("transaksi").value;
+      const jumlah = document.getElementById("jumlah").value;
+      const kategori = document.getElementById("kategori").value;
+    
+      // Create a new row in the table
+      const tableBody = document.getElementById("transaksiTableBody");
+      const row = document.createElement("tr");
+    
+      row.innerHTML = `
+        <td>${nama}</td>
+        <td>${transaksi}</td>
+        <td>${jumlah}</td>
+        <td>${kategori}</td>
+      `;
+    
+      // Append the row to the table
+      tableBody.appendChild(row);
+    
+      // Reset form fields
+      document.getElementById("transaksiForm").reset();
+    });
+    </script>
+</body>
+</html>
